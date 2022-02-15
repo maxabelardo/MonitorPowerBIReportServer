@@ -33,17 +33,18 @@ O Power BI Report Server é uma adaptação do antigo SQL Server Report Server S
 - msdb.dbo.sysjobs: lista todos os jobs no servidor de SQL Server.
 - msdb.dbo.sysjobhistory: lista o histórico de execução dos jobs.
 
-Diagrama de dados da base do Power BI Report Server.
+### Diagrama de dados da base do Power BI Report Server.
 ![alt text](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/diagramaDadosPBIRS.PNG?raw=true)
 
 
 ## Destino dos dados.
-### O dados seram migrado para uma base rodando dentro SQL Server, mantendo a compatibilidade de SGBD, poderia ser utilizado outro SGBD para receber o dados? Sim totalmente possível.
+#### O dados seram migrado para uma base rodando dentro SQL Server, mantendo a compatibilidade de SGBD, poderia ser utilizado outro SGBD para receber o dados? Sim totalmente possível.
 
 ### Estrutura de dados de destino.
 
 ### Tabelas:
-<table>
+
+#####  <table>
   <tr>
     <td>Tabelas</td>
     <td>Tipo</td>
@@ -130,3 +131,10 @@ Diagrama de dados da base do Power BI Report Server.
     <td>Visão com os dados do painel cruzado com outras tabelas.</td>
   </tr>      
 </table>
+
+
+### Diagrama de dados de destino.
+![alt text](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/diagramaDadoDestino.PNG?raw=true)
+
+
+
