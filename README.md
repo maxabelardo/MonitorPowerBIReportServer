@@ -7,6 +7,7 @@ O Power BI Report Server é uma adaptação do antigo SQL Server Report Server S
 
 ### Para se instalar o Power BI Report Server é preciso ter uma licença do SQL Server.
 
+## Origem dos dados.
 ### Itens que seram extraindo:
 - Diretórios.
 - Painéis.
@@ -36,3 +37,14 @@ Diagrama de dados da base do Power BI Report Server.
 ![alt text](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/diagramaDadosPBIRS.PNG?raw=true)
 
 
+## Destino dos dados.
+### O dados seram migrado para uma base rodando dentro SQL Server, mantendo a compatibilidade de SGBD, poderia ser utilizado outro SGBD para receber o dados? Sim totalmente possível.
+
+### Estrutura de dados de destino.
+
+### Tabelas:
+<table>
+  <td>aaa
+    <tr>bbb <\tr>
+  <\td>
+<\table>
