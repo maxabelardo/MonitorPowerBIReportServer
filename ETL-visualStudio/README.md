@@ -5,7 +5,7 @@ Como o objetivo do projeto é manter uma base do histórico dos objetos. sendo a
 O ELT será compost por vários steps, vamos detalhar cada uma deles neste documento.
 
 ### Visão geral do workflow.
-![alt text](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/00-Projeto.PNG?raw=true)
+![alt text](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/_00-Projeto.PNG?raw=true)
 
 
 #### Lista dos Data Flow Task.
@@ -47,11 +47,17 @@ O ELT será compost por vários steps, vamos detalhar cada uma deles neste docum
     <td>Verifica se existe algum usuário novo cadastrado, se existir cadastra na tabelas "RoleUserAD". </td>
     <td>RoleUserAD</td>
   </tr>    
-
   <tr>
     <td>ObjetoRoleUser</td>
     <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/050-ObjetoRoleUser.PNG"></td>
     <td>Extrai as permissões dos usuários aos objetos.</td>
     <td>ObjetoRoleUser</td>
   </tr>      
+  <tr>
+    <td>ObjetoRoleUser</td>
+    <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/050-ObjetoRoleUser.PNG"></td>
+    <td>Extrai as permissões dos usuários aos objetos.</td>
+    <td>ObjetoRoleUser</td>
+  </tr>      
+  
 </table>
