@@ -9,35 +9,49 @@ O ELT será compost por vários steps, vamos detalhar cada uma deles neste docum
 
 
 #### Lista dos Data Flow Task.
+
 <table>
   <tr align="center">
     <td width="30%">Data Flow Task</td>
     <td width="20%">Imagem</td>
     <td width="50%">Detalhamento</td>
+    <td width="50%">Tabela de destino</td>
   </tr>    
   <tr>
     <td>ETL start</td>
     <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/000-etlStart.PNG"></td>
     <td>Alimenta a variável de ambiente com a data e hora do início do ETL.</td>
+    <td></td>
   </tr>
   <tr>
     <td>Pasta-00</td>
     <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/010-pastas-00.PNG"></td>
     <td>Exração dos diretórios da origem.</td>
+    <td>Pasta</td>
   </tr>
   <tr>
     <td>Objetos-00</td>
     <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/020-Objetos-00.PNG"></td>
     <td>Exração dos painéis da origem.</td>
+    <td>Objeto</td>
   </tr>  
   <tr>
-    <td>Objetos-00</td>
+    <td>UserRole-00</td>
     <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/030-UserRole-00.PNG"></td>
-    <td>Exração dos Usuários suas permissões.</td>
+    <td>Exração dos Usuários com o acesso aos objetos.</td>
+    <td>RoleUser</td>
   </tr>  
   <tr>
-    <td>Objetos-00</td>
+    <td>RoleUserAD</td>
     <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/040-RoleUserAD.PNG"></td>
     <td>Verifica se existe algum usuário novo cadastrado, se existir cadastra na tabelas "RoleUserAD". </td>
+    <td>RoleUserAD</td>
   </tr>    
+
+  <tr>
+    <td>ObjetoRoleUser</td>
+    <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/050-ObjetoRoleUser.PNG"></td>
+    <td>Extrai as permissões dos usuários aos objetos.</td>
+    <td>ObjetoRoleUser</td>
+  </tr>      
 </table>
