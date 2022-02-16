@@ -11,15 +11,33 @@ O ELT será compost por vários steps, vamos detalhar cada uma deles neste docum
 #### Lista dos Data Flow Task.
 <table>
   <tr align="center">
-    <td width="20%">Data Flow Task</td>
-    <td colspan="3" width="40%">Imagem</td>
-    <td width="40%">Detalhamento</td>
+    <td width="30%">Data Flow Task</td>
+    <td width="20%">Imagem</td>
+    <td width="50%">Detalhamento</td>
   </tr>    
   <tr>
     <td>ETL start</td>
-    <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/000-etlStart.PNG" height="50" width="1000"></td>
-    <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/001-etlStart.PNG"></td>
-    <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/002-etlStart.PNG"></td>
+    <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/000-etlStart.PNG"></td>
     <td>Alimenta a variável de ambiente com a data e hora do início do ETL.</td>
   </tr>
+  <tr>
+    <td>Pasta-00</td>
+    <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/010-pastas-00.PNG"></td>
+    <td>Exração dos diretórios da origem.</td>
+  </tr>
+  <tr>
+    <td>Objetos-00</td>
+    <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/020-Objetos-00.PNG"></td>
+    <td>Exração dos painéis da origem.</td>
+  </tr>  
+  <tr>
+    <td>Objetos-00</td>
+    <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/030-UserRole-00.PNG"></td>
+    <td>Exração dos Usuários suas permissões.</td>
+  </tr>  
+  <tr>
+    <td>Objetos-00</td>
+    <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/ETL-visualStudio/040-RoleUserAD.PNG"></td>
+    <td>Verifica se existe algum usuário novo cadastrado, se existir cadastra na tabelas "RoleUserAD". </td>
+  </tr>    
 </table>
