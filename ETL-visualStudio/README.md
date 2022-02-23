@@ -26,7 +26,7 @@ O ELT será compost por vários steps, vamos detalhar cada uma deles neste docum
   <tr>
     <td>Pasta-00</td>
     <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/010-pastas-00.PNG"></td>
-    <td>Exração dos diretórios da origem.</td>
+    <td>Extração dos diretórios da origem.</td>
     <td>Pasta</td>
   </tr>
   <tr>
@@ -38,7 +38,7 @@ O ELT será compost por vários steps, vamos detalhar cada uma deles neste docum
   <tr>
     <td>UserRole-00</td>
     <td><img src="https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/030-UserRole-00.PNG"></td>
-    <td>Exração dos Usuários com o acesso aos objetos.</td>
+    <td>Extração dos Usuários com o acesso aos objetos.</td>
     <td>RoleUser</td>
   </tr>  
   <tr>
