@@ -47,6 +47,7 @@ A base de dados é separada em objetos, sergurança, atualização e auditoria, 
 * sergurança   = security
 * atualização  = updating
 * auditoria    = auditing 
+* dbo          = dbo
 
 Com está metodologia podemos ter um controle melhor na liberação de acesso aos usuários em ações futuras.
 ### Script:
@@ -69,14 +70,14 @@ GO
 | auditing            | visualizacao	      | BASE_TABLE	     | Tabela de auditoria dos painéis, lista todos os acessos ao painel. |
 | objects             | datasource         |	BASE_TABLE	     | Fonte de dados dos painéis. |
 | objects             | Estancia	          | BASE_TABLE	     | As estâncias que serão monitoras, Tabela principal do sistema. |
-| objects             | etl                |	BASE_TABLE	     | Históricos de extração executadas. Execução do ETL. |
-| objects             | objetoroleuser	    | BASE_TABLE	     | Regas de acesso aos painéis. |
-| objects             | objetos            | BASE_TABLE	     | Tabelas que armazena os painéis e as pasta onde estão localizados o painel. |
-| objects             | objetosSize	       | BASE_TABLE	     | Tabela que armazena o tamanho do painel no momento do ETL. Histórico de crescimento do painel. |
+| objects             | painel             | BASE_TABLE	     | Tabelas que armazena os painéis e as pasta onde estão localizados o painel. |
+| objects             | painelsize	        | BASE_TABLE	     | Tabela que armazena o tamanho do painel no momento do ETL. Histórico de crescimento do painel. |
 | objects             | Pasta	             | BASE_TABLE	     | Lista a estrutura das pastas dos painéis. |
 | objects             | workspace	         | BASE_TABLE	     | Lista das Pastas raiz, ou seja, a primeira pasta do site. |
 | objects             | vw_objeto          | VIEW	           | Visão com os painéis com filtro para somente os painéis ativos. |
 | objects             | vw_relobjetos	     | VIEW	           | Visão com os dados do painel cruzado com outras tabelas. |
+| dbo                 | etl                |	BASE_TABLE	     | Históricos de extração executadas. Execução do ETL. |
+| security            | objetoroleuser	    | BASE_TABLE	     | Regas de acesso aos painéis. |
 | security            | roleuser	          | BASE_TABLE	     | Usuários e permissão de acesso aos painéis. (usuários duplicados). |
 | security            | roleuserad	        | BASE_TABLE	     | Lista de usuários sem duplicação com informações trazidas do Active Directory. |
 | updating            | schedule	          | BASE_TABLE	     | Lista de agenda de atualização dos painéis. |
