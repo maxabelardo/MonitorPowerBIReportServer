@@ -5,7 +5,7 @@ Descrição:
 	A tabela "painel" deverá armazenar os painéis da organiza do site ou portal.
 
 Relacionamento:
-	se relaciona com a tabela pai "instancia" que será de N para 1.
+	se relaciona com a tabela pai "pasta" que será de N para 1.
 
 A tabela está sendo criada no filegroup "PRIMARY"
 
