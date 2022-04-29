@@ -85,21 +85,28 @@ GO
 
 
 ### Diagrama de dados _objects_:
+![image](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/dd_objects.PNG?raw=true)
 
 
-
+### Diagrama de dados _auditing_:
+| auditing  | auditing com tabela "painel" do schema _objects_    |
+|---|-----|
+|![image](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/dd_auditing.PNG?raw=true) | ![image](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/dd_auditing_completo.PNG?raw=true)|
 
 
 ### Diagrama de dados _security_:
+| security  | security com tabela "painel" do schema _objects_    |
+|---|-----|
+|![image](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/dd_security.PNG?raw=true) | ![image](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/dd_security_completo.PNG?raw=true)|
+
 
 ### Diagrama de dados _updating_:
+| updating  | security com tabela "painel" do schema _updating_    |
+|---|-----|
+|![image](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/dd_auditing.PNG?raw=true) | ![image](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/dd_auditing_completo.PNG?raw=true)|
 
-### Diagrama de dados _auditing_:
-
-
-
-
-
+### Diagrama de dados completo:
+![image](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/dd_completo.PNG?raw=true)
 
 
 
