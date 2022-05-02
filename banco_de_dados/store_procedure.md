@@ -37,10 +37,30 @@ EXECUTE [dbo].[SP_UpdatePasta]
 GO
 
 ```
+
+Tabelas vinculadas a SP:
+- Pasta.
+- Auditoria.
+- LogError
+
+Workflow:
+- Controle da auditoria.
+		Para obter os dados antes da alteração será executado um select com os dados "@idinstancia" e "@ItemID" 
+		na tabela no "[objects].[Pasta]".
+		O select está dentro de um insert na tabelas "[auditing].[auditoria]" 
+- Executar o Update no banco.
+- Caso algums das tarefas apresente erro será gravodo na tabelas "[auditing].[logerror]" o erro para analise.
+
+Controle de erro:
+Todas as tarefas da SP estaram dentro de um controle de erro chamado "Try catch" 
+a SP só deverá ser finalizada com sucesso se todas as tarefas forem forem executadas com sucesso "COMMIT TRANSACTION;" caso alguma das tarefas 
+apresentem erro todo os comandos seram desfeito "ROLLBACK TRANSACTION;" 
+
+
+
 Script interno da SP _"SP_UpdatePasta"_
 ```
-
-CREATE PROCEDURE [dbo].[SP_UpdatePasta]
+CREATE PROCEDURE [dbo].[sp_updatepasta]
     @idinstancia         [INT],                  -- Id da estância do portal.
 	@ItemID             NVARCHAR(40),           -- Id interno do objeto.
     @Pasta              nvarchar(425),          -- Novo nome da pasta
@@ -51,16 +71,11 @@ CREATE PROCEDURE [dbo].[SP_UpdatePasta]
 	@Nivel              int                     -- Nível do objeto.
 AS
 BEGIN
-
-/*Toda tarefa da SP estara dentro de um controle de erro chamado "Try catch" 
-a SP só deverá receber o comando de concluido se todas as tafefas forem executadas com sucesso. */
+	--Controle de erro.
 	BEGIN TRANSACTION;  
 
 		BEGIN TRY  
-		   /*   Nesta etapa da SP será feito o controle da auditoria.
-			 Para obter os dados antes da alteração será executado um select com os dados "@idinstancia" e "@ItemID" 
-			 na tabela no "[objects].[Pasta]".
-			 O select está dentro de um insert na tabelas "[auditing].[auditoria]" */
+		    -- Auditoria.
 			INSERT INTO [dbo].[Auditoria]
 					   ([TabName],[idRegistro],[acao],[valorAnterior],[valorDepois])
 				SELECT 'Pasta'     --TabName
@@ -72,7 +87,7 @@ a SP só deverá receber o comando de concluido se todas as tafefas forem execut
 					  WHERE A.[idinstancia]  = @idinstancia
 						AND A.[ItemID]      = @ItemID
 
-			-- Despois da auditoria ter sido gravado no banco o Update será executado.
+			-- Update
 			UPDATE [objects].[Pasta]
 			   SET [Pasta]              = @Pasta
 				  ,[Localizacao]        = @Localizacao
@@ -107,9 +122,7 @@ a SP só deverá receber o comando de concluido se todas as tafefas forem execut
 		IF @@TRANCOUNT > 0  
 			COMMIT TRANSACTION;  
 END
-
 GO
-
 ```
 
 
