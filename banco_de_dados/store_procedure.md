@@ -5,6 +5,9 @@ _Store_ _procedure_ ou _"SP"_ são funções que são utilizadas para encapsular
 
 
 ## Lista das Store procedure.
+| Store Procedure       | Descrição                                                                         |
+|-----------------------|-----------------------------------------------------------------------------------|
+| sp_updatepasta        | Utilizada para integra a auditoria, update e analise de erro. utilizada pelo ETL. |
 
 
 ### O ETL utilizará as SP_Update*** para autalizar os dados no banco.
@@ -25,7 +28,7 @@ DECLARE @DataDaModificacao datetime    -- Nova data de modificação
 DECLARE @DiasSemAlteracao int          -- Dias sem Alteração.
 DECLARE @Nivel int                     -- Nível do objeto.
 
-EXECUTE [dbo].[SP_UpdatePasta] 
+EXECUTE [dbo].[sp_updatepasta] 
    @idEstancia
   ,@ItemID
   ,@Pasta
