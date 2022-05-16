@@ -27,3 +27,8 @@ O Power BI Premium é uma assinatura do Microsoft 365 de nível de locatário di
 * SKUs P (P1-P5) para recursos corporativos e de inserção, exigindo um compromisso mensal ou anual, cobrado mensalmente, com a inclusão de uma licença para instalar o Servidor de Relatórios do Power BI local.
 * SKUs EM (EM1-EM3) para inserção organizacional, exigindo um compromisso anual cobrado mensalmente. Os SKUs EM1 e EM2 estão disponíveis somente por meio de planos de licenciamento por volume. Não é possível comprá-los diretamente.
 
+
+## Como funcionará o projeto!
+
+O projeto será divido em três partes: Base de origem __"ReportServer"__, Base de destino __"MonitorPowerBI"__ e a extração dos dados __"ETL"__
+
