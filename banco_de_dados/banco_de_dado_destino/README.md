@@ -34,6 +34,11 @@ Sim totalmente possível, porem neste projeto vamos utilizar o SQL Server.
     <td>Históricos de extração executadas. Execução do ETL.</td>
   </tr>
   <tr>
+    <td>LogError</td>
+    <td>BASE TABLE</td>
+    <td>Histórico dos log de erro interno da base de dados.</td>
+  </tr>
+  <tr>
     <td>ObjetoRoleUser</td>
     <td>BASE TABLE</td>
     <td>Regas de acesso aos painéis.</td>
@@ -191,6 +196,7 @@ O schema __"dbo"__ já existe por padrão no banco.
 | Schema              | Tabela             | Tipo            | Descrição                                                      |
 |---------------------|--------------------|-----------------|----------------------------------------------------------------|
 | auditing            | auditoria	         | BASE_TABLE	     | Tabela que armazena os logs do report server. |
+| auditing            | logerror	         | BASE_TABLE	     | Tabela que armazena os logs de erros internos da base. |
 | auditing            | visualizacao	      | BASE_TABLE	     | Tabela de auditoria dos painéis, lista todos os acessos ao painel. |
 | objects             | datasource         |	BASE_TABLE	     | Fonte de dados dos painéis. |
 | objects             | Estancia	          | BASE_TABLE	     | As estâncias que serão monitoras, Tabela principal do sistema. |
