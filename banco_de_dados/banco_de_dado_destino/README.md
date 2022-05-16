@@ -1,7 +1,110 @@
-# Banco de dados de destino "monitor_porwer_bi"
+
+# MonitorPowerBI
+Base de dados de destivno dos dados migrado, a base estará rodando em um servidor de SQL Server, poderia ser utilizado outro SGBD para receber o dados? 
+Sim totalmente possível, porem neste projeto vamos utilizar o SQL Server.
+
+### Base de dados:
+
+#### Tabelas:
+
+#####  <table>
+  <tr>
+    <td>Tabelas</td>
+    <td>Tipo</td>
+    <td>Descrição</td>
+  </tr>
+  <tr>
+    <td>Auditoria</td>
+    <td>BASE TABLE</td>
+    <td>Tabela que armazena os logs do report server    </td>
+  </tr>
+  <tr>
+    <td>DataSource</td>
+    <td>BASE TABLE</td>
+    <td>Fonte de dados dos painéis </td>
+  </tr>
+  <tr>
+    <td>Estancia</td>
+    <td>BASE TABLE</td>
+    <td>As estâncias que serão monitoras, Tabela principal do sistema.</td>
+  </tr>
+  <tr>
+    <td>ETL</td>
+    <td>BASE TABLE</td>
+    <td>Históricos de extração executadas. Execução do ETL.</td>
+  </tr>
+  <tr>
+    <td>ObjetoRoleUser</td>
+    <td>BASE TABLE</td>
+    <td>Regas de acesso aos painéis.</td>
+  </tr>    
+  <tr>
+    <td>Painel</td>
+    <td>BASE TABLE</td>
+    <td>Tabelas que armazena os painéis e as pasta onde estão localizados o painel.</td>
+  </tr>    
+  <tr>
+    <td>PainelSize</td>
+    <td>BASE TABLE</td>
+    <td>Tabela que armazena o tamanho do painel no momento do ETL. Histórico de crescimento do painel.</td>
+  </tr>
+  <tr>
+    <td>Pasta</td>
+    <td>BASE TABLE</td>
+    <td>Lista a estrutura das pastas dos painéis.</td>
+  </tr> 
+  <tr>
+    <td>RoleUser</td>
+    <td>BASE TABLE</td>
+    <td>Usuários e permissão de acesso aos painéis. (usuários duplicados) </td>
+  </tr>  
+  <tr>
+    <td>RoleUserAD</td>
+    <td>BASE TABLE</td>
+    <td>Lista de usuários sem duplicação com informações trazidas do Active Directory</td>
+  </tr>    
+  <tr>
+    <td>Schedule</td>
+    <td>BASE TABLE</td>
+    <td>Lista de agenda de atualização dos painéis.</td>
+  </tr>    
+  <tr>
+    <td>ScheduleHist</td>
+    <td>BASE TABLE</td>
+    <td>Histórico de atualização e o status da execução.</td>
+  </tr>    
+  <tr>
+    <td>Visualizacao</td>
+    <td>BASE TABLE</td>
+    <td>Tabela de auditoria dos painéis, lista todos os acessos ao painel.</td>
+  </tr>    
+  <tr>
+    <td>WorkSpace</td>
+    <td>BASE TABLE</td>
+    <td>Lista das Pastas raiz, ou seja, a primeira pasta do site.</td>
+  </tr>    
+  <tr>
+    <td>Objeto</td>
+    <td>VIEW</td>
+    <td>Visão com os painéis com filtro para somente os painéis ativos.</td>
+  </tr>    
+  <tr>
+    <td>relObjetos</td>
+    <td>VIEW</td>
+    <td>Visão com os dados do painel cruzado com outras tabelas.</td>
+  </tr>      
+</table>
+
+
+### Diagrama de dados:
+![alt text](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/diagramaDadoDestino.PNG?raw=true)
+
+
+
+# Código fonte.
 
 ### FileGroup
-Como está base será utilizada como um historico dos portais do Power BI, a carga de dados deveram ser incremental, com isto teremos o histórico dos objetos. Prevendo um crescimento alto da base e o alto volume de dados nos logs de auditoria, a baser será criada com varios arquivos físico, dividir a carga de consulta e o volume de dados em diferentes arquivos e diretórios.
+Como está base será utilizada como um historico dos portais do Power BI, a carga de dados deveram ser incremental, com isto teremos o histórico de todos os objetos. Prevendo um crescimento alto da base e o alto volume de dados nos logs de auditoria, a baser será criada com varios arquivos físico, dividir a carga de consulta e o volume de dados em diferentes arquivos que seram distribuidos em varios HD.
 
 | FileGroup | Descrição |
 |-----------|-----------|
@@ -11,25 +114,35 @@ Como está base será utilizada como um historico dos portais do Power BI, a car
 | INDEX | o recomendado que os arquivos deste grupo fique em um disco ssd, com isto o ganho de IO do index. |
 | LOG | log transacional, será armazenados os dados das transacões de insert, update e delete no banco. |
 
-Script:
+#### Script de criação da base de dados.
 ```
 USE [master]
 GO
-
+-- Comando para cria a base de dados, nome da base "monitor_power_bi"
 CREATE DATABASE [monitor_power_bi]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'monitor_power_bi00', FILENAME = N'D:\SQL2016\monitor_power_bi00.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB ), 
- FILEGROUP [AUDITING] 
+ CONTAINMENT = NONE  ON  
+ -- Arquivos físicos: "monitor_power_bi00" local "D:\SQL2016\monitor_power_bi00.mdf" e filegroup "PRIMARY"
+ PRIMARY   
+( NAME = N'monitor_power_bi00', FILENAME = N'D:\SQL2016\monitor_power_bi00.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB ),
+
+-- Arquivos físicos: "monitor_power_bi00" local "D:\SQL2016\monitor_power_bi_auditing.ndf" e filegroup "AUDITING"
+ FILEGROUP [AUDITING]  
 ( NAME = N'monitor_power_bi_auditing', FILENAME = N'D:\SQL2016\monitor_power_bi_auditing.ndf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB ), 
- FILEGROUP [INDEX] 
+
+-- Arquivos físicos: "monitor_power_bi00" local "D:\SQL2016\monitor_power_bi_index.ndf" e filegroup "INDEX"
+ FILEGROUP [INDEX]  
 ( NAME = N'monitor_power_bi_index', FILENAME = N'D:\SQL2016\monitor_power_bi_index.ndf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB ), 
- FILEGROUP [SECONDARY] 
+
+-- Arquivos físicos: "monitor_power_bi00" local "D:\SQL2016\monitor_power_bi10.ndf" e filegroup "PRIMARY"
+ FILEGROUP [SECONDARY]  
 ( NAME = N'monitor_power_bi10', FILENAME = N'D:\SQL2016\monitor_power_bi10.ndf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
+
+-- Arquivos físicos: "monitor_power_bi00" local "E:\SQL2016\monitor_power_bi_log.ldf" e filegroup "LOG"
+ LOG ON  
 ( NAME = N'monitor_power_bi_log', FILENAME = N'E:\SQL2016\monitor_power_bi_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
 GO
 
+-- Se a função FULL TEXT estiver ativa, ativar a função para base de dados.
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
 begin
 EXEC [monitor_power_bi].[dbo].[sp_fulltext_database] @action = 'enable'
@@ -41,7 +154,7 @@ GO
 
 
 ### Schema:
-A base de dados é separada em objetos, sergurança, atualização e auditoria, cada item deverá ser um "schema" dentro do banco de dados.
+A base de dados é separada em: objetos, sergurança, atualização e auditoria, cada item deverá ser um "schema" dentro do banco de dados.
 
 * objetos      = objects
 * sergurança   = security
@@ -50,18 +163,29 @@ A base de dados é separada em objetos, sergurança, atualização e auditoria, 
 * dbo          = dbo
 
 Com está metodologia podemos ter um controle melhor na liberação de acesso aos usuários em ações futuras.
-### Script:
+
+
+#### Script:
 ```
+-- Schema objetos
 CREATE SCHEMA [objects] AUTHORIZATION [dbo]
 GO
+
+-- Schema sergurança
 CREATE SCHEMA [security] AUTHORIZATION [dbo]
 GO
+
+-- Schema atualização
 CREATE SCHEMA [updating] AUTHORIZATION [dbo]
 GO
+
+-- Schema auditoria
 CREATE SCHEMA [auditing] AUTHORIZATION [dbo]
 GO
 
 ```
+O schema __"dbo"__ já existe por padrão no banco.
+
 
 ### Tabelas:
 | Schema              | Tabela             | Tipo            | Descrição                                                      |
