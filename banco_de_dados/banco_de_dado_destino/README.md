@@ -232,6 +232,31 @@ O schema __"dbo"__ já existe por padrão no banco.
 ### Diagrama de dados completo:
 ![image](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/dd_completo.PNG?raw=true)
 
+## Funções internas
+Neste projetos vamos utilizar as SP __"store procedures"__ e FN __"Function"__ para executar tarefas dentro do banco.
+
+<P>O que é __"store procedures"__?</P>
+Um __Store Procedures__ no SQL Server é um grupo de uma ou mais instruções Transact-SQL ou uma referência a um método CLR (Common Language Runtime) do Microsoft .NET Framework. Os procedimentos lembram as construções em outras linguagens de programação porque podem:
+* Aceitar parâmetros de entrada e retornar vários valores no formulário de parâmetros de saída para o programa de chamada.
+* Conter instruções de programação que executam operações no banco de dados. Estas incluem a chamada de outros procedimentos.
+* Retornar um valor de status a um programa de chamada para indicar êxito ou falha (e o motivo da falha).
+
+[Para mais informações acessar o link](https://docs.microsoft.com/pt-br/sql/relational-databases/stored-procedures/stored-procedures-database-engine?view=sql-server-ver15)
+
+<P>O que é __"Function"__?</P>
+Uma função definida pelo usuário é uma rotina Transact-SQL ou CLR (Common Language Runtime) que aceita parâmetros, executa uma ação, como um cálculo complexo, e retorna o resultado dessa ação como um valor. O valor de retorno pode ser um valor escalar (único) ou uma tabela. Use essa instrução para criar uma rotina reutilizável que possa ser usada destas maneiras:
+* Em instruções Transact-SQL, como SELECT
+* Em aplicativos que chamam a função
+* Na definição de outra função definida pelo usuário
+* Para parametrizar uma exibição ou aprimorar a funcionalidade de uma exibição indexada
+* Para definir uma coluna em uma tabela
+* Para definir uma restrição CHECK em uma coluna
+* Para substituir um procedimento armazenado
+
+[Para mais informações acessar o link](https://docs.microsoft.com/pt-br/sql/t-sql/statements/create-function-transact-sql?view=sql-server-ver15)
+
+
+
 
 
 
