@@ -1,9 +1,9 @@
 # Monitor Power BI Report Server.
 
-### Este projeto tem objetivo de criar uma estrutura de documentação, monitoramento e auditoria do servidor local de Power BI Report Server.
+### Este projeto tem objetivo de criar uma estrutura de documentação, monitoramento e auditoria do servidores locais de Power BI Report Server.
 
 ### Observação:
-O Power BI Report Server é uma adaptação do antigo SQL Server Report Server SSRS, com isto as tabelas são muito parecidas.
+O Power BI Report Server é uma adaptação do antigo SQL Server Report Server SSRS, com isto as tabelas da base "ReportServer" são muito parecidas.
 
 ### Para se instalar o Power BI Report Server é preciso ter uma licença do SQL Server.
 
