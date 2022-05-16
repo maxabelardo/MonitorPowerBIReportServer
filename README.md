@@ -2,139 +2,28 @@
 
 ### Este projeto tem objetivo de criar uma estrutura de documentação, monitoramento e auditoria do servidores locais de Power BI Report Server.
 
-### Observação:
-O Power BI Report Server é uma adaptação do antigo SQL Server Report Server SSRS, com isto as tabelas da base "ReportServer" são muito parecidas.
+#### O que é o Power BI Report Server
+O Servidor de Relatórios do Power BI é a solução na infraestrutura local para criar relatórios hoje, com a flexibilidade para mover para a nuvem amanhã. Ele é incluído com o Power BI Premium, para que você possa mover para a nuvem de acordo com suas necessidades.
 
-### Para se instalar o Power BI Report Server é preciso ter uma licença do SQL Server.
+O Pewer BI Report Server é um portal da Web no qual você pode exibir e gerenciar relatórios e KPIs. Com ele, vêm as ferramentas para criar relatórios do Power BI, relatórios paginados, relatórios móveis e KPIs. Seus usuários podem acessar esses relatórios de maneiras diferentes: exibindo-os em um navegador da Web ou dispositivo móvel, ou como um email em sua caixa de entrada
 
-## Origem dos dados.
-### Itens que seram extraindo:
-- Diretórios.
-- Painéis.
-- Usuários com acesso.
-- Permissões de acesso.
-- Conexões de dados, origem dos dados dos painéis.
-- Tipo da origens dos dados.
-- Agenda de atualização dos dados.
-- Histórico de acesso aos painéis.
+#### Publicar relatórios na infraestrutura local do Power BI
+O Servidor de Relatórios fornece aos usuários acesso a relatórios avançados e interativos e a funcionalidades de criação de relatórios corporativos do SQL Server Reporting Services. Explore dados visuais e descubra rapidamente padrões para tomar decisões melhores com mais rapidez. Ao mesmo tempo, gere os relatórios paginados de pixels perfeitos de que seus negócios precisam. Você também pode escalonar com confiança para milhares de usuários, pois o Servidor de Relatórios do Power BI é baseado em uma plataforma comprovada de nível corporativo.
 
-### Tabelas de origem dos dados:
-- Catalog: Lista dos objetos "painel", diretórios e demais informações.
-- Users: Lista doso os usuários com acesso ao site.
-- Policies: vincula o objeto com a permissão dos usuários com a tabelas PocicyUserRole.
-- PolicyUserRoles: Tabela N para N com a tabelas Role, Policies e Users
-- Roles: tabelas com as permissões de acesso.
-- Schedule: lista todas as agendas de atualização dos paineis. 
-- ReportSchedule: vincula as agenda do painel da tabela "Schedule" com a tabelas "Catalog".
-- Subscriptions: demais informações da agenda de atualização.
-- ExecutionLogStorage: histórico de acesso aos objetos do site.
+#### Comparando o Servidor de Relatórios do Power BI
+O Servidor de Relatórios do Power BI é semelhante ao SQL Server Reporting Services e ao serviço do Power BI online, mas de maneiras diferentes. Assim como o serviço do Power BI, o Servidor de Relatórios do Power BI hospeda relatórios do Power BI (.pbix), arquivos do Excel e relatórios paginados (.rdl). Assim como o Reporting Services, o Servidor de Relatórios do Power BI é local. Os recursos do Servidor de Relatórios do Power BI são um superconjunto do Reporting Services: tudo o que você pode fazer no Reporting Services, pode fazer com o Servidor de Relatórios do Power BI, além do suporte para relatórios do Power BI.
 
-### Tabelas do servidor que são utilizadas.
-- msdb.dbo.sysjobs: lista todos os jobs no servidor de SQL Server.
-- msdb.dbo.sysjobhistory: lista o histórico de execução dos jobs.
+#### Licenciando o Servidor de Relatórios do Power BI
+O Servidor de Relatórios do Power BI está disponível por meio de duas licenças diferentes: __Power BI Premium__ e __SQL Server Enterprise Edition com Software Assurance__. Confira Licenciamento por Volume da Microsoft. Com uma licença do Power BI Premium, você pode criar uma implantação híbrida combinando recursos locais e na nuvem.
 
-### Diagrama de dados da base do Power BI Report Server.
-![alt text](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/diagramaDadosPBIRS.PNG?raw=true)
+_Se você publicar os relatórios do Power BI no Servidor de Relatórios do Power BI, também precisará de uma licença do Power BI Pro. Você não precisa de uma licença do Power BI Pro para exibir e interagir com os relatórios do Power BI no Servidor de Relatórios do Power BI._
 
+#### O que é SQL Server Enterprise Edition com Software Assurance?
+É o licenciamento do SQL Server, com a licença do SQL Server é possível instalar um Power BI Report Server.
 
-## Destino dos dados.
-#### O dados seram migrado para uma base rodando dentro SQL Server, mantendo a compatibilidade de SGBD, poderia ser utilizado outro SGBD para receber o dados? Sim totalmente possível.
-
-### Estrutura de dados de destino.
-
-### Tabelas:
-
-#####  <table>
-  <tr>
-    <td>Tabelas</td>
-    <td>Tipo</td>
-    <td>Descrição</td>
-  </tr>
-  <tr>
-    <td>Auditoria</td>
-    <td>BASE TABLE</td>
-    <td>Tabela que armazena os logs do report server    </td>
-  </tr>
-  <tr>
-    <td>DataSource</td>
-    <td>BASE TABLE</td>
-    <td>Fonte de dados dos painéis </td>
-  </tr>
-  <tr>
-    <td>Estancia</td>
-    <td>BASE TABLE</td>
-    <td>As estâncias que serão monitoras, Tabela principal do sistema.</td>
-  </tr>
-  <tr>
-    <td>ETL</td>
-    <td>BASE TABLE</td>
-    <td>Históricos de extração executadas. Execução do ETL.</td>
-  </tr>
-  <tr>
-    <td>ObjetoRoleUser</td>
-    <td>BASE TABLE</td>
-    <td>Regas de acesso aos painéis.</td>
-  </tr>    
-  <tr>
-    <td>Painel</td>
-    <td>BASE TABLE</td>
-    <td>Tabelas que armazena os painéis e as pasta onde estão localizados o painel.</td>
-  </tr>    
-  <tr>
-    <td>PainelSize</td>
-    <td>BASE TABLE</td>
-    <td>Tabela que armazena o tamanho do painel no momento do ETL. Histórico de crescimento do painel.</td>
-  </tr>
-  <tr>
-    <td>Pasta</td>
-    <td>BASE TABLE</td>
-    <td>Lista a estrutura das pastas dos painéis.</td>
-  </tr> 
-  <tr>
-    <td>RoleUser</td>
-    <td>BASE TABLE</td>
-    <td>Usuários e permissão de acesso aos painéis. (usuários duplicados) </td>
-  </tr>  
-  <tr>
-    <td>RoleUserAD</td>
-    <td>BASE TABLE</td>
-    <td>Lista de usuários sem duplicação com informações trazidas do Active Directory</td>
-  </tr>    
-  <tr>
-    <td>Schedule</td>
-    <td>BASE TABLE</td>
-    <td>Lista de agenda de atualização dos painéis.</td>
-  </tr>    
-  <tr>
-    <td>ScheduleHist</td>
-    <td>BASE TABLE</td>
-    <td>Histórico de atualização e o status da execução.</td>
-  </tr>    
-  <tr>
-    <td>Visualizacao</td>
-    <td>BASE TABLE</td>
-    <td>Tabela de auditoria dos painéis, lista todos os acessos ao painel.</td>
-  </tr>    
-  <tr>
-    <td>WorkSpace</td>
-    <td>BASE TABLE</td>
-    <td>Lista das Pastas raiz, ou seja, a primeira pasta do site.</td>
-  </tr>    
-  <tr>
-    <td>Objeto</td>
-    <td>VIEW</td>
-    <td>Visão com os painéis com filtro para somente os painéis ativos.</td>
-  </tr>    
-  <tr>
-    <td>relObjetos</td>
-    <td>VIEW</td>
-    <td>Visão com os dados do painel cruzado com outras tabelas.</td>
-  </tr>      
-</table>
-
-
-### Diagrama de dados de destino.
-![alt text](https://github.com/maxabelardo/MonitorPowerBIReportServer/blob/main/imagens/diagramaDadoDestino.PNG?raw=true)
-
-
+#### O que é o Power BI Premium?
+Você pode usar o Power BI Premium para acessar recursos e funcionalidades disponíveis apenas no Premium e oferecer maior escala e melhor desempenho para o conteúdo do Power BI na sua organização. O Power BI Premium permite que mais usuários na organização aproveitem ao máximo o Power BI com melhor desempenho e capacidade de resposta.
+O Power BI Premium é uma assinatura do Microsoft 365 de nível de locatário disponível em duas famílias de SKU (Unidade de Manutenção de Estoque):
+* SKUs P (P1-P5) para recursos corporativos e de inserção, exigindo um compromisso mensal ou anual, cobrado mensalmente, com a inclusão de uma licença para instalar o Servidor de Relatórios do Power BI local.
+* SKUs EM (EM1-EM3) para inserção organizacional, exigindo um compromisso anual cobrado mensalmente. Os SKUs EM1 e EM2 estão disponíveis somente por meio de planos de licenciamento por volume. Não é possível comprá-los diretamente.
 
