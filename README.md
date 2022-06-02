@@ -30,5 +30,8 @@ O Power BI Premium é uma assinatura do Microsoft 365 de nível de locatário di
 
 ## Como funcionará o projeto!
 
-O projeto será divido em três partes: Base de origem __"ReportServer"__, Base de destino __"MonitorPowerBI"__ e a extração dos dados __"ETL"__
+O projeto será divido em três partes: 
+* [Base de origem __"ReportServer"__](https://github.com/maxabelardo/MonitorPowerBIReportServer/tree/main/banco_de_dados/banco_de_dado_origem)
+* [Base de destino __"MonitorPowerBI"__](https://github.com/maxabelardo/MonitorPowerBIReportServer/tree/main/banco_de_dados/banco_de_dado_destino) 
+* [Extração dos dados __"ETL"__](https://github.com/maxabelardo/MonitorPowerBIReportServer/tree/main/etl)
 
