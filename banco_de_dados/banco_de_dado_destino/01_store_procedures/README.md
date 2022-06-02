@@ -4,11 +4,22 @@ Na base de dados deste projetos existe diversas SP que executan uma infinidade d
 _Store_ _procedure_ ou _"SP"_ são funções que são utilizadas para encapsular tarefas a serem executadas no servidor de banco de dados, estas tarefas poderiam ser feita pela aplicação porem vão ser executadas dentro do banco.
 
 
-## Lista das Store procedure.
+## Detalhamento da Store procedure.
 | Store Procedure       | Descrição                                                                         |
 |-----------------------|-----------------------------------------------------------------------------------|
 | sp_update***          | Quanto o ETL for atualizar os dados ele deverá usar a SP, na SP estara encapsulado a tarefas de update, auditorio e tratamento de erro.|
 | sp_delete***          | Se o ETL detectar que um objeto foi apagado na origem, o ETL utilizará esta SP para desativar o objeto no banco. |
+
+## Store Proecedure.
+| Store Procedure       | Descrição                                                                         |
+|-----------------------|-----------------------------------------------------------------------------------|
+| sp_UpdatePasta        | Executar alterações nos registros da tabela pasta e executrar o controle de auditoria.|
+| sp_UpdatePainel       | |
+| sp_DeletePasta        | Executar a desativação da pasta e executrar o controle de auditoria.|
+| sp_DeletePainel       | |
+
+
+
 
 
 ### O ETL utilizará as SP_Update*** para autalizar os dados no banco.
