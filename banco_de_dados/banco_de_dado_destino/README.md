@@ -1,6 +1,6 @@
 
 # MonitorPowerBI
-Base de dados de destivno dos dados migrado, a base estará rodando em um servidor de SQL Server, poderia ser utilizado outro SGBD para receber o dados? 
+Base de dados de destino dos dados migrado, a base estará rodando em um servidor de SQL Server, poderia ser utilizado outro SGBD para receber o dados? 
 Sim totalmente possível, porem neste projeto vamos utilizar o SQL Server.
 
 ### Base de dados:
